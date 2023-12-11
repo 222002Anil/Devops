@@ -2,13 +2,15 @@ pipeline {
     agent any
     stages {
         stage('Parallel Stage') {
-            steps {
-                echo "Main branch: hi"
-            }
             parallel {
-                'child stage' {
+                'Main Branch' : {
                     steps {
-                        echo "Parallel branch: bye"
+                        echo 'Main branch: hi'
+                    }
+                }
+                'Child Stage' : {
+                    steps {
+                        echo 'Parallel branch: bye'
                     }
                 }
             }
