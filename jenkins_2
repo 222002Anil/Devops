@@ -7,20 +7,6 @@ pipeline {
                 echo 'Welcome to the pipeline'
             }
         }
-
-        stage('Parallel Stage') {
-            steps {
-                sh 'echo "hi"'
-            }
-            parallel {
-                'child stage': {
-                    steps {
-                        sh 'echo "bye"'
-                    }
-                } // Add more parallel stages if needed
-            }
-        }
-
         stage('first one') {
             steps {
                 sh 'echo "hello its successfully running"'
