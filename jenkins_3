@@ -5,9 +5,10 @@ pipeline {
                     steps {
                         echo 'Main branch: hi'
                     }
-                }
+                
                     steps {
                         echo 'Parallel branch: bye'
                     }
                 }
             }
+}
