@@ -1,17 +1,17 @@
 pipeline {
-agent any
-stages {
-stage('Parallel Stage') {
-    steps {
-        sh 'echo "hi"'
-    }
-    parallel {
-        child stage: {
+    agent any
+    stages {
+        stage('Parallel Stage') {
             steps {
-                sh 'echo "bye"'
+                echo "Main branch: hi"
+            }
+            parallel {
+                'child stage': {
+                    steps {
+                        echo "Parallel branch: bye"
+                    }
+                }
             }
         }
     }
-}
-}
 }
