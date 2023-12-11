@@ -6,7 +6,7 @@ pipeline {
                 echo "Main branch: hi"
             }
             parallel {
-                'child stage': {
+                'child stage' {
                     steps {
                         echo "Parallel branch: bye"
                     }
