@@ -13,7 +13,7 @@ agent any
     }
     stage ('third one'){
       step {
-         sh 'echo "thank you"
+         sh 'echo "thank you"'
             }
         }
     }
