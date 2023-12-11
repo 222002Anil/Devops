@@ -1,0 +1,17 @@
+pipeline {
+agent any
+stages {
+stage('Parallel Stage') {
+    steps {
+        sh 'echo "hi"'
+    }
+    parallel {
+        'child stage': {
+            steps {
+                sh 'echo "bye"'
+            }
+        }
+    }
+}
+}
+}
