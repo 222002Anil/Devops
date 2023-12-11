@@ -9,17 +9,17 @@ pipeline {
         }
         stage('code testing') {
             steps {
-              sh  'echo "testing"'
+                sh 'echo "testing"'
             }
         }
         stage('build') {
             steps {
-              sh  'echo "building application"'
+                sh 'echo "building application"'
             }
         }
         stage('deploy') {
             steps {
-              sh  'echo "application deployed to prod server"'
+                sh 'echo "application deployed to prod server"'
             }
         }
     }
