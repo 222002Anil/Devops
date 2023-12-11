@@ -2,17 +2,17 @@ pipeline {
 agent any
   stages {
     stage ('first one'){
-      step {
+      steps {
         sh 'echo "hello its sucessufullly running"'
           }
     }
     stage ('second one'){
-      step {
+      steps {
         sh 'echo "hello it is also running sucessfully"'
           }
     }
     stage ('third one'){
-      step {
+      steps {
          sh 'echo "thank you"'
             }
         }
