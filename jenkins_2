@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('wellcome') {
+        stage('Welcome') {
             steps {
                 echo 'Welcome to the pipeline'
             }
@@ -17,8 +17,7 @@ pipeline {
                     steps {
                         sh 'echo "bye"'
                     }
-                }
-                // Add more parallel stages if needed
+                } // Add more parallel stages if needed
             }
         }
 
