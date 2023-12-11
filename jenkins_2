@@ -1,0 +1,21 @@
+pipeline {
+agent any
+  stages {
+    stage ('first one'){
+      step {
+        sh 'echo "hello its sucessufullly running"'
+          }
+    }
+    stage ('second one'){
+      step {
+        sh 'echo "hello it is also running sucessfully"'
+          }
+    }
+    stage ('third one'){
+      step {
+         sh 'echo "thank you"
+            }
+        }
+    }
+}
+        
