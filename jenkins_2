@@ -1,17 +1,19 @@
 pipeline {
 agent any
   stages ('wellcome'){
-    stage('Welcome Step'){
-    when {
-      anyOf{
-        branch 'main';
-        branch 'dev'
-          }
-      }
-    steps{
-    sh 'echo "wellcome again"'
+  stage('Parallel Stage') {
+       steps {
+                sh 'echo "hi"'
+}
+            parallel {
+                stage('child stage') {
+                    steps {
+                        sh 'echo "bye"'
 }
 }
+}
+}
+
     stage ('first one'){
       steps {
         sh 'echo "hello its sucessufullly running"'
