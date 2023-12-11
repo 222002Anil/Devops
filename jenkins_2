@@ -1,6 +1,7 @@
 pipeline {
 agent any
   stages ('wellcome'){
+    stage('Welcome Step'){
     when {
       anyOf{
         branch 'main';
@@ -10,7 +11,7 @@ agent any
     steps{
     sh 'echo "wellcome again"'
 }
-
+}
     stage ('first one'){
       steps {
         sh 'echo "hello its sucessufullly running"'
