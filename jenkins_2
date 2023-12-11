@@ -1,6 +1,16 @@
 pipeline {
 agent any
-  stages {
+  stages ('wellcome'){
+    when {
+      anyOf{
+        branch 'main';
+        branch 'dev'
+          }
+      }
+    steps{
+    sh 'echo "wellcome again"'
+}
+
     stage ('first one'){
       steps {
         sh 'echo "hello its sucessufullly running"'
