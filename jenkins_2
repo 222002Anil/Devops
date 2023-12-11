@@ -1,34 +1,43 @@
 pipeline {
-agent any
-  stages ('wellcome'){
-  stage('Parallel Stage') {
-       steps {
+    agent any
+
+    stages {
+        stage('wellcome') {
+            steps {
+                echo 'Welcome to the pipeline'
+            }
+        }
+
+        stage('Parallel Stage') {
+            steps {
                 sh 'echo "hi"'
-}
+            }
             parallel {
-                stage('child stage') {
+                'child stage' : {
                     steps {
                         sh 'echo "bye"'
-}
-}
-}
-}
+                    }
+                }
+                // Add more parallel stages if needed
+            }
+        }
 
-    stage ('first one'){
-      steps {
-        sh 'echo "hello its sucessufullly running"'
-          }
-    }
-    stage ('second one'){
-      steps {
-        sh 'echo "hello it is also running sucessfully"'
-          }
-    }
-    stage ('third one'){
-      steps {
-         sh 'echo "thank you"'
+        stage('first one') {
+            steps {
+                sh 'echo "hello its successfully running"'
+            }
+        }
+
+        stage('second one') {
+            steps {
+                sh 'echo "hello it is also running successfully"'
+            }
+        }
+
+        stage('third one') {
+            steps {
+                sh 'echo "thank you"'
             }
         }
     }
 }
-        
