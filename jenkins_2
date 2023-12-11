@@ -13,7 +13,7 @@ pipeline {
                 sh 'echo "hi"'
             }
             parallel {
-                'child stage' : {
+                'child stage': {
                     steps {
                         sh 'echo "bye"'
                     }
