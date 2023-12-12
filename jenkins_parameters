@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    
+    environment {
+        MY_VARIABLE = 'Hello, World!'
+    }
+    
+    parameters {
+        choice(
+            name: 'Fruites',
+            choices: ['grapes', 'mango', 'apple'],
+            description: 'Select the fruites.'
+        )
+      
+        string(
+            name: 'Anil', defaultValue: 'default', description: 'Description for PARAM1'
+        )
+
+        booleanParam(name: 'Your_choice', defaultValue: true, description: 'Enable')
+    }
+    
+    stages {
+        stage('Example') {
+            steps {
+                script {
+                    def selectedFruits = params.Your_choice ? 'Apple' : params.Fruites
+                    echo "Selected fruits: ${selectedFruits}"
+                }
+            }
+        }
+    }
+      
+    post {
+        always {
+            echo 'This runs always.'
+        }
+        success {
+            echo 'This runs on success.'
+        }
+        failure {
+            echo 'This runs on failure.'
+        }
+    }
+}
