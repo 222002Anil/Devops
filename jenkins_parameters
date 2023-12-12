@@ -13,13 +13,18 @@ pipeline {
         )
       
         string(
-            name: 'Anil', defaultValue: 'default', description: 'Description for PARAM1'
+            name: 'Anil', defaultValue: 'default', description: 'Description'
         )
-
-        booleanParam(
-            name: 'Your_choice',
-            defaultValue: getDefaultValue(),
-            description: 'Enable'
+        text(
+            name: 'About Yourself', defaultValue: 'default', description: 'Description'
+        )
+        
+        booleanParam(name: 'Your_choice', defaultValue: false, description: 'Enable')
+        
+        password(
+            name: 'DB_PASSWORD',
+            defaultValue: '',
+            description: 'Enter the database password'
         )
     }
     
@@ -27,13 +32,21 @@ pipeline {
         stage('Example') {
             steps {
                 script {
-                    def selectedFruits = params.Your_choice ? 'Apple' : params.Fruites
+                    def selectedFruits = params.Your_choice ? 'Apple' : 'mango'
                     echo "Selected fruits: ${selectedFruits}"
                 }
             }
         }
+        
+        stage('Database') {
+            steps {
+                script {
+                    echo "Database password: ${DB_PASSWORD}"
+                }
+            }
+        }
     }
-   
+      
     post {
         always {
             echo 'This runs always.'
@@ -45,8 +58,4 @@ pipeline {
             echo 'This runs on failure.'
         }
     }
-}
-
-def getDefaultValue() {
-    return someCondition ? true : false
 }
