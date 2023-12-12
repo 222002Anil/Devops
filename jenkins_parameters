@@ -37,16 +37,8 @@ pipeline {
                 }
             }
         }
-        
-        stage('Database') {
-            steps {
-                script {
-                    echo "Database password: ${DB_PASSWORD}"
-                }
-            }
-        }
-    }
-      
+ 
+   }   
     post {
         always {
             echo 'This runs always.'
