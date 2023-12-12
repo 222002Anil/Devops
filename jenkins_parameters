@@ -7,16 +7,17 @@ pipeline {
     
     parameters {
         choice(
-            name: 'Fruites',
+            name: 'Fruits',
             choices: ['grapes', 'mango', 'apple'],
-            description: 'Select the fruites.'
+            description: 'Select the fruits.'
         )
       
         string(
             name: 'Anil', defaultValue: 'default', description: 'Description'
         )
+        
         text(
-            name: 'About Yourself', defaultValue: 'default', description: 'Description'
+            name: 'AboutYourself', defaultValue: 'default', description: 'Description'
         )
         
         booleanParam(name: 'Your_choice', defaultValue: false, description: 'Enable')
@@ -32,13 +33,27 @@ pipeline {
         stage('Example') {
             steps {
                 script {
-                    def selectedFruits = params.Your_choice ? 'Apple' : 'mango'
+                    def selectedFruits = params.Your_choice ? 'Apple' : 'Mango'
                     echo "Selected fruits: ${selectedFruits}"
                 }
             }
         }
- 
-   }   
+        
+        stage('User Approval') {
+            input {
+                message 'Should we continue?'
+                ok 'Yes, we should.'
+                submitter 'alice,bob'
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
+            }
+            steps {
+                echo "Hello, ${PERSON}, nice to meet you."
+            }
+        }
+    }
+      
     post {
         always {
             echo 'This runs always.'
@@ -48,22 +63,6 @@ pipeline {
         }
         failure {
             echo 'This runs on failure.'
-        }
-    }
-}
-    stages {
-        stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
-            steps {
-                echo "Hello, ${PERSON}, nice to meet you."
-            }
         }
     }
 }
