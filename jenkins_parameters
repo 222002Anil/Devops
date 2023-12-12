@@ -16,7 +16,11 @@ pipeline {
             name: 'Anil', defaultValue: 'default', description: 'Description for PARAM1'
         )
 
-        booleanParam(name: 'Your_choice', defaultValue: true, description: 'Enable')
+        booleanParam(
+            name: 'Your_choice',
+            defaultValue: getDefaultValue(),
+            description: 'Enable'
+        )
     }
     
     stages {
@@ -29,7 +33,7 @@ pipeline {
             }
         }
     }
-      
+   
     post {
         always {
             echo 'This runs always.'
@@ -41,4 +45,8 @@ pipeline {
             echo 'This runs on failure.'
         }
     }
+}
+
+def getDefaultValue() {
+    return someCondition ? true : false
 }
